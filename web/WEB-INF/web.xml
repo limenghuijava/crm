@@ -48,7 +48,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>*.action</url-pattern>
         <!--*.action或者*.do：过滤掉以action或者do结尾的请求-->
         <!--/*:拦截所有，jsp,css,html，png等等所有的请求全部被拦截，进入到核心控制器中,但是springmvc不能对静态资源处理，所以一旦进入核心控制器，就不能正常访问静态资源，就会报错-->
         <!--/:拦截所有（不拦截jsp，拦截css,js,png等静态资源文件），强烈建议，拦截到所有带/的请求-->
