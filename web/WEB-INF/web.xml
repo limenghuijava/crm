@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!--项目启动的时候加载spring容器-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/applicationContext*.xml</param-value>
+    </context-param>
+
+    <!--监听项目启动，完成在启动的时候就加载spring配置文件，初始化spring容器-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- 解决post乱码问题 -->
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <!-- 设置编码参是UTF8 -->
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--springmvc核心控制器-->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/springmvc.xml</param-value>
+            <!--这里指定springmvc的配置文件的位置以及配置文件的名称，如果此处不配置的话，
+                SpringMVC的配置文件的默认路径是/WEB-INF/${servlet-name}-servlet.xml -->
+        </init-param>
+        <!-- 配置springmvc什么时候启动，参数必须为整数 -->
+        <!-- 如果为0或者大于0，则springMVC随着容器启动而启动 -->
+        <!-- 如果小于0，则在第一次请求进来的时候启动 -->
+        <load-on-startup>1</load-on-startup>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>*.do</url-pattern>
+        <!--*.action或者*.do：过滤掉以action或者do结尾的请求-->
+        <!--/*:拦截所有，jsp,css,html，png等等所有的请求全部被拦截，进入到核心控制器中,但是springmvc不能对静态资源处理，所以一旦进入核心控制器，就不能正常访问静态资源，就会报错-->
+        <!--/:拦截所有（不拦截jsp，拦截css,js,png等静态资源文件），强烈建议，拦截到所有带/的请求-->
+    </servlet-mapping>
+
+
+
+</web-app>
