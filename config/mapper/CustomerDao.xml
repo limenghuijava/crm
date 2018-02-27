@@ -97,7 +97,7 @@
 
     <update id="updateCustomer" parameterType="cn.crm.ssm.pojo.Customer">
         UPDATE customer SET
-        <if test="custz_name !='' and cust_name !=null">
+        <if test="cust_name !='' and cust_name !=null">
             cust_name=#{cust_name},
         </if>
         <if test="cust_source !='' and cust_source !=null">
@@ -129,7 +129,7 @@
         </if><if test="cust_phone !='' and cust_phone !=null">
             cust_phone=#{cust_phone},
         </if>
-        cust_creatime=NOW()
+        cust_createtime=NOW()
         WHERE cust_id=#{cust_id}
 
     </update>

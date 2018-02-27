@@ -410,7 +410,7 @@
 				type:"get",
 				url:"<%=basePath%>customer/edit.action",
 				data:{"id":id},
-				dataType:"json",
+				// dataType:"json",
 				success:function(data) {
 				    console.log(data);
 					$("#edit_cust_id").val(data.cust_id);

@@ -6,12 +6,12 @@ import cn.crm.ssm.pojo.QueryVo;
 import cn.crm.ssm.service.BaseDictService;
 import cn.crm.ssm.service.CustomerService;
 import cn.crm.ssm.utils.Page;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -67,20 +67,25 @@ public class CustomerController {
     }
 
     @RequestMapping("edit")
-    public String editCustomer(String id,Model model){
+    @ResponseBody   //返回json字符串
+    public Customer editCustomer(String id,Model model){
         Customer customer=customerService.queryCustomerByCustID(id);
-        return JSONObject.fromObject(customer).toString();
+//        return JSONObject.fromObject(customer).toString();
+        return customer;
     }
 
     @RequestMapping("delete")
-    public void deleteCustomer(String id,Model model){
+    @ResponseBody
+    public String deleteCustomer(String id,Model model){
         customerService.deleteCustomerByCustID(id);
-//        return "success";
+        return "success";
     }
 
     @RequestMapping("update")
-    public void updateCustomer(Customer customer,Model model){
+    @ResponseBody
+    public String updateCustomer(Customer customer,Model model){
         customerService.updateCustomer(customer);
+        return "success";
     }
 
 }
