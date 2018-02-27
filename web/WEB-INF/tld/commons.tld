@@ -6,13 +6,13 @@
 	<tlib-version>2.0</tlib-version>
 	<jsp-version>1.2</jsp-version>
 	<short-name>common</short-name>
-	<uri>http://itcast.cn/common/</uri>
+	<uri>myjstl</uri>
 	<display-name>Common Tag</display-name>
 	<description>Common Tag library</description>
 
 	<tag>
 		<name>page</name>
-		<tag-class>cn.itcast.common.utils.NavigationTag</tag-class>
+		<tag-class>cn.crm.ssm.utils.NavigationTag</tag-class>
 		<body-content>JSP</body-content>
 		<description>create navigation for paging</description>
 		<attribute>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%--<%@ taglib prefix="itcast" uri="http://itcast.cn/common/"%>--%>
+<%@ taglib prefix="itcast" uri="myjstl"%><%--自定义taglib标签--%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -283,7 +283,7 @@
 							</tbody>
 						</table>
 						<div class="col-md-12 text-right">
-							<%--<itcast:page url="${pageContext.request.contextPath }/customer/list.action" />--%>
+							<itcast:page url="${pageContext.request.contextPath }/customer/list.action" />
 						</div>
 						<!-- /.panel-body -->
 					</div>
@@ -388,7 +388,6 @@
 		</div>
 	</div>
 	<!-- /#wrapper -->
-
 	<!-- jQuery -->
 	<script src="<%=basePath%>js/jquery.min.js"></script>
 
@@ -411,7 +410,9 @@
 				type:"get",
 				url:"<%=basePath%>customer/edit.action",
 				data:{"id":id},
+				dataType:"json",
 				success:function(data) {
+				    console.log(data);
 					$("#edit_cust_id").val(data.cust_id);
 					$("#edit_customerName").val(data.cust_name);
 					$("#edit_customerFrom").val(data.cust_source)

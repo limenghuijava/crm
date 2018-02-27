@@ -9,6 +9,14 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/applicationContext*.xml</param-value>
     </context-param>
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
 
     <!--监听项目启动，完成在启动的时候就加载spring配置文件，初始化spring容器-->
     <listener>
@@ -53,6 +61,14 @@
         <!--/*:拦截所有，jsp,css,html，png等等所有的请求全部被拦截，进入到核心控制器中,但是springmvc不能对静态资源处理，所以一旦进入核心控制器，就不能正常访问静态资源，就会报错-->
         <!--/:拦截所有（不拦截jsp，拦截css,js,png等静态资源文件），强烈建议，拦截到所有带/的请求-->
     </servlet-mapping>
+
+    <!--自定义taglib,引入分页样式-->
+    <jsp-config>
+        <taglib>
+            <taglib-uri>myjstl</taglib-uri>
+            <taglib-location>/WEB-INF/tld/commons.tld</taglib-location>
+        </taglib>
+    </jsp-config>
 
 
 
