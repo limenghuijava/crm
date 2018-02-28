@@ -65,9 +65,9 @@
         LEFT JOIN base_dict c ON a.cust_industry = c.dict_id
         LEFT JOIN base_dict d ON a.cust_level = d.dict_id
         <include refid="customerCondition"/>
-        <if test="start!='' and start!=null">
+        <!--<if test="start!='' and start!=null">-->
           LIMIT #{start}, #{rows}
-        </if>
+        <!--</if>-->
 
     </select>
 
